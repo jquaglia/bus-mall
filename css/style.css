@@ -26,6 +26,10 @@ img {
   height: 250px;
 }
 
+#hidden-results {
+  display: none;
+}
+
 ul {
   text-align: center;
   margin-top: 25px;
