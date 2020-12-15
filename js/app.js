@@ -11,9 +11,8 @@ var myContainer = document.getElementById('container');
 var imageOneElement = document.getElementById('image-one');
 var imageTwoElement = document.getElementById('image-two');
 var imageThreeElement = document.getElementById('image-three');
-var resultsList = document.getElementById('results');
-var myButton = document.getElementById('button');
 var hiddenSection = document.getElementById('hidden-results');
+var ctx = document.getElementById('myChart').getContext('2d');
 
 // product constructor
 function Product(productName, src = 'jpg') {
@@ -34,13 +33,14 @@ function getRandomIndex(max) {
 function renderProducts() {
   // validation
   // 1 random index, push 1 into array, get random index 2, check array for index 2, if false, move on, if true, get random index 2 again, get random index 3, check array for index 3, if true, get random index3 again, if false, move on.
-  while (renderQueue.length < 3) {
+  while (renderQueue.length < 6) {
     var tempIndex = getRandomIndex(allProducts.length);
-    while (renderQueue.includes(tempIndex)){
+    while (renderQueue.includes(tempIndex)) {
       tempIndex = getRandomIndex(allProducts.length);
     }
-    renderQueue.push(tempIndex);
+    renderQueue.unshift(tempIndex);
   }
+  // console.log(renderQueue);
 
   var productOneIndex = renderQueue.pop();
   var productTwoIndex = renderQueue.pop();
@@ -52,7 +52,7 @@ function renderProducts() {
 }
 
 // add src, alt, title to image tag
-function productViews(imgElement, productIndex){
+function productViews(imgElement, productIndex) {
   imgElement.src = allProducts[productIndex].src;
   imgElement.alt = allProducts[productIndex].name;
   imgElement.title = allProducts[productIndex].name;
@@ -61,10 +61,10 @@ function productViews(imgElement, productIndex){
 
 // event handler
 function handleClick(event) {
-  // if (){
-  //   alert('Please click on the images')
-  // } else actualClicks++;
-  actualClicks++;
+  if (event.target === myContainer){
+    alert('Please click on the images');
+  } else actualClicks++;
+  // actualClicks++;
   var clickedProduct = event.target.title;
   for (var i = 0; i < allProducts.length; i++) {
     if (clickedProduct === allProducts[i].name) {
@@ -77,23 +77,69 @@ function handleClick(event) {
   // validation for when we hit our max clicks
   if (actualClicks === maxClicksAllowed) {
     myContainer.removeEventListener('click', handleClick);
-    var button = document.createElement('button');
-    button.innerHTML = 'Results';
-    myButton.appendChild(button);
-    handlePush();
+    hiddenSection.style.display = 'block';
+    renderChart();
   }
 }
 
-function handlePush(event){
-  var clickedButton = event.target.button;
-  hiddenSection.style.display = 'block';
-  for (var j = 0; j < allProducts.length; j++) {
-    var liElement = document.createElement('li');
-    liElement.textContent = `${allProducts[j].name} was viewed ${allProducts[j].views} times and clicked ${allProducts[j].votes} times`;
-    resultsList.appendChild(liElement);
+// function to render the chart
+function renderChart(){
+  var namesArray = [];
+  var votesArray = [];
+  var viewsArray = [];
+
+  for (var i = 0; i < allProducts.length; i++){
+    namesArray.push(allProducts[i].name);
+    votesArray.push(allProducts[i].votes);
+    viewsArray.push(allProducts[i].views);
   }
-  document.removeEventListener('click', handlePush);
+
+  var myChart = new Chart(ctx, {    //eslint-disable-line
+    type: 'bar',
+    data: {
+      labels: namesArray,
+      datasets: [{
+        label: 'Number of Views',
+        data: viewsArray,
+        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        borderColor: 'rgba(153, 102, 255, 1)',
+        borderWidth: 1
+      },
+      {
+        label: 'Number of Votes',
+        data: votesArray,
+        backgroundColor: 'rgba(255, 159, 64, 0.6)',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        labels: {
+          fontColor: 'black'
+        }
+      },
+      responsive: false,
+      scales: {
+        scaleLabel: {
+          fontColor: 'black'
+        },
+        xAxes: {
+          ticks: {
+            fontColor: 'black'
+          }
+        },
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontColor: 'black'
+          }
+        }]
+      }
+    }
+  });
 }
+
 
 //Instantiations
 new Product('bag');
@@ -122,4 +168,3 @@ renderProducts();
 
 // event listener
 myContainer.addEventListener('click', handleClick);
-myButton.addEventListener('click', handlePush);
