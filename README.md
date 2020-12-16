@@ -2,7 +2,7 @@
 
 ## Bus Mall
 
-I'm in the process of building a market analysis app for BusMall. It surveys the customers in what product they like the most. At the end, a chart of the results and stats show up. At this point I'm customizing the chart to look decent.
+I'm in the process of building a market analysis app for BusMall. It surveys the customers in what product they like the most. At the end, a chart of the results and stats show up. At this point I'm customizing the chart to look decent. I also added local storage functionality to this so that the totals persist on page refresh. You can see this data in the chart.
 
 ### Author: Jason Quaglia
 
@@ -13,6 +13,10 @@ I'm in the process of building a market analysis app for BusMall. It surveys the
 * Anthony Hayward
 
 * Carly Dekock
+
+* Jason Dormier
+
+* Anthony Johnson
 
 ### Links and Resources
 
@@ -31,3 +35,5 @@ I'm in the process of building a market analysis app for BusMall. It surveys the
 * This was hard to do. Maybe a case of the monday blues but I was really foggy today especially with the while loop.
 
 * Adding a chart was fun. Especially how I didn't have to code it out myself xD. Libraries are cool!
+
+* Adding localStorage wasn't too difficult. Mainly just had to follow the standard steps. We went over a simple if else statement in class that worked perfectly.
