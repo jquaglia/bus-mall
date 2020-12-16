@@ -23,7 +23,6 @@ function Product(productName, src = 'jpg') {
   allProducts.push(this);
 }
 
-// DETERMINE WHICH PRODUCT IS VIEWED
 // get random index
 function getRandomIndex(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -40,7 +39,7 @@ function renderProducts() {
     }
     renderQueue.unshift(tempIndex);
   }
-  // console.log(renderQueue);
+  console.log(renderQueue);
 
   var productOneIndex = renderQueue.pop();
   var productTwoIndex = renderQueue.pop();
@@ -64,7 +63,6 @@ function handleClick(event) {
   if (event.target === myContainer){
     alert('Please click on the images');
   } else actualClicks++;
-  // actualClicks++;
   var clickedProduct = event.target.title;
   for (var i = 0; i < allProducts.length; i++) {
     if (clickedProduct === allProducts[i].name) {
@@ -101,19 +99,25 @@ function renderChart(){
       datasets: [{
         label: 'Number of Views',
         data: viewsArray,
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        backgroundColor: 'rgba(255, 159, 64, 0.6)',
+        borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 1
       },
       {
         label: 'Number of Votes',
         data: votesArray,
-        backgroundColor: 'rgba(255, 159, 64, 0.6)',
-        borderColor: 'rgba(255, 159, 64, 1)',
+        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        borderColor: 'rgba(153, 102, 255, 1)',
         borderWidth: 1
       }]
     },
     options: {
+      title: {
+        display: true,
+        text: 'Survey Results',
+        fontColor: 'black',
+        fontSize: 18
+      },
       legend: {
         labels: {
           fontColor: 'black'
@@ -124,11 +128,11 @@ function renderChart(){
         scaleLabel: {
           fontColor: 'black'
         },
-        xAxes: {
+        xAxes: [{
           ticks: {
             fontColor: 'black'
           }
-        },
+        }],
         yAxes: [{
           ticks: {
             beginAtZero: true,
@@ -139,7 +143,6 @@ function renderChart(){
     }
   });
 }
-
 
 //Instantiations
 new Product('bag');
