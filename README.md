@@ -24,6 +24,8 @@ I'm in the process of building a market analysis app for BusMall. It surveys the
 
 * [Info on box shadow](https://stackoverflow.com/questions/33203148/how-to-make-a-div-box-look-3d)
 
+* [Info on renaming branch](https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch)
+
 ### Reflections and Comments
 
 * This was hard to do. Maybe a case of the monday blues but I was really foggy today especially with the while loop.
