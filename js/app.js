@@ -77,6 +77,9 @@ function handleClick(event) {
     myContainer.removeEventListener('click', handleClick);
     hiddenSection.style.display = 'block';
     renderChart();
+
+    var stringifiedProducts = JSON.stringify(allProducts);
+    localStorage.setItem('products', stringifiedProducts);
   }
 }
 
@@ -144,27 +147,32 @@ function renderChart(){
   });
 }
 
-//Instantiations
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('usb', 'gif');
-new Product('water-can');
-new Product('wine-glass');
+var retrievedProducts = localStorage.getItem('products');
+if (retrievedProducts){
+  allProducts = JSON.parse(retrievedProducts);
+} else {
+  // Instantiations
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('usb', 'gif');
+  new Product('water-can');
+  new Product('wine-glass');
+}
 
 // executable code
 renderProducts();
