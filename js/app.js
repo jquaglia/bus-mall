@@ -31,7 +31,6 @@ function getRandomIndex(max) {
 // assign a src, alt, title to image
 function renderProducts() {
   // validation
-  // 1 random index, push 1 into array, get random index 2, check array for index 2, if false, move on, if true, get random index 2 again, get random index 3, check array for index 3, if true, get random index3 again, if false, move on.
   while (renderQueue.length < 6) {
     var tempIndex = getRandomIndex(allProducts.length);
     while (renderQueue.includes(tempIndex)) {
@@ -77,7 +76,6 @@ function handleClick(event) {
     myContainer.removeEventListener('click', handleClick);
     hiddenSection.style.display = 'block';
     renderChart();
-
     var stringifiedProducts = JSON.stringify(allProducts);
     localStorage.setItem('products', stringifiedProducts);
   }
@@ -95,6 +93,7 @@ function renderChart(){
     viewsArray.push(allProducts[i].views);
   }
 
+  // chart from chartjs
   var myChart = new Chart(ctx, {    //eslint-disable-line
     type: 'bar',
     data: {

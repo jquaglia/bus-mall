@@ -2,7 +2,7 @@
 
 ## Bus Mall
 
-I'm in the process of building a market analysis app for BusMall. It surveys the customers in what product they like the most. At the end, a chart of the results and stats show up. At this point I'm customizing the chart to look decent. I also added local storage functionality to this so that the totals persist on page refresh. You can see this data in the chart.
+I built a market analysis app for BusMall. It surveys the customers in what product they like the most. At the end, a chart of the results and stats show up. At this point I'm customizing the chart to look decent. I also added local storage functionality to this so that the totals persist on page refresh. You can see this data in the chart.
 
 ### Author: Jason Quaglia
 
